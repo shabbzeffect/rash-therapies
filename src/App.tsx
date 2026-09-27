@@ -1,4 +1,5 @@
 import { About, Services, Stats } from "./components/About";
+import { Analytics } from "./components/Analytics";
 import { Approach, Speaking } from "./components/Approach";
 import { Booking } from "./components/Booking";
 import { Navbar, TopBar } from "./components/Chrome";
@@ -34,6 +35,7 @@ export default function App() {
       <Footer />
       <FloatingActions />
       <Toaster />
+      <Analytics />
     </div>
   );
 }

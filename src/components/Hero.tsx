@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, CalendarHeart, ShieldCheck } from "lucide-react";
-import { featured, marquee, site } from "../data/site";
+import { art, featured, marquee, site } from "../data/site";
 import { ArtPlate } from "./ArtPlate";
 import { PillButton, Reveal, Stars } from "./primitives";
 const AVATARS = ["W", "D", "A", "F", "S"];
@@ -108,6 +108,8 @@ export function Hero() {
           <div className="relative rounded-t-full rounded-b-[28px] border border-gold/45 p-2.5 shadow-lift">
             <ArtPlate
               variant="portrait"
+              src={art.portrait}
+              eager
               className="arch-top aspect-[4/5] w-full"
               label={`${site.name}, ${site.role}, in her studio in ${site.location}`}
             />

@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Award, BookOpen, HeartHandshake, Landmark, Quote, Sprout } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { credentials, pillars, services, site, stats } from "../data/site";
+import { art, credentials, pillars, services, site, stats } from "../data/site";
 import { ArtPlate } from "./ArtPlate";
 import { Counter, Eyebrow, PillButton, Reveal, SectionHead } from "./primitives";
 
@@ -22,11 +22,17 @@ export function About() {
         <Reveal className="relative">
           <ArtPlate
             variant="room"
+            src={art.room}
             className="aspect-[5/6] w-full rounded-[28px] border border-forest/8"
             label="A calm therapy room in Lavington with an arched window and soft chairs"
           />
           <div className="absolute -bottom-8 -right-4 w-44 overflow-hidden rounded-[22px] border-4 border-ivory shadow-lift sm:-right-8 sm:w-56">
-            <ArtPlate variant="detail" className="aspect-[4/3] w-full" label="A journal and a cup of tea on linen" />
+            <ArtPlate
+              variant="detail"
+              src={art.detail}
+              className="aspect-[4/3] w-full"
+              label="A journal and a cup of tea on linen"
+            />
           </div>
           <div className="absolute -left-4 top-8 rounded-2xl bg-forest px-4 py-3 text-ivory shadow-soft sm:-left-6">
             <p className="font-display text-2xl leading-none">{site.yearsLabel}</p>

@@ -74,12 +74,43 @@ booking engine · footer.
 
 Type: **Fraunces** (display serif, 300 weight + italic accents) and **Manrope** (body sans).
 
-## Booking
+## Configuration
 
-Three validated steps — service and mode, date and time, then details. Dates are generated
-from today, skipping Sundays and Mondays to match practice hours. On success a reference
-code `RKW-XXXXX` is generated and can be copied. Nothing is charged; no backend is wired,
-so `submit` in `Booking.tsx` is the seam where an API call goes.
+All optional. Create a `.env.local` (gitignored) to enable them.
+
+| Variable | Effect |
+| --- | --- |
+| `VITE_BOOKING_ENDPOINT` | Where the booking form POSTs JSON. Any endpoint that accepts a body works — Formspree (`https://formspree.io/f/<id>`), Resend, a Cloudflare Worker, your own API. **Unset by default**, and the form then opens a pre-filled email instead, so it degrades rather than breaking. |
+| `VITE_ANALYTICS_SRC` | Cookieless analytics script URL, e.g. `https://plausible.io/js/script.js`. Unset by default, so a stock build ships **zero** third-party code. |
+| `VITE_ANALYTICS_DOMAIN` | Passed to the script as `data-domain`. |
+
+### Booking flow
+
+`src/lib/booking.ts` owns delivery. The form always validates first, then either POSTs
+`BookingRequest` to `VITE_BOOKING_ENDPOINT` or falls back to a `mailto:` link carrying the
+same details. Either way the visitor gets the `RKW-XXXXX` reference. A hidden `company`
+honeypot field silences bots without a captcha. Non-2xx responses and network failures
+surface an inline error with a WhatsApp fallback rather than a false success.
+
+### Photography
+
+There are no photo assets. The imagery is art-directed SVG (`ArtPlate`) in six variants. To
+use real photographs, drop files into `public/images/` and set the paths in `art` in
+`src/data/site.ts`:
+
+```ts
+export const art = {
+  portrait: "/images/portrait.jpg",  // 4:5, ~1600px wide
+  room:     "/images/room.jpg",      // 5:6
+  stage:    "/images/stage.jpg",     // 4:5
+  circle:   "/images/circle.jpg",    // 4:5
+  detail:   "/images/detail.jpg",    // 4:3
+  journal:  "/images/journal.jpg",   // 4:3
+};
+```
+
+`ArtPlate` switches to a lazy-loaded `<img>` automatically; the hero portrait is `eager` and
+everything else lazy, as a real photo set should be. Nothing else needs editing.
 
 ## Accessibility
 

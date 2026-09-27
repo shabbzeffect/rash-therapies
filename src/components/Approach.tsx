@@ -1,5 +1,5 @@
 import { Mic, Quote } from "lucide-react";
-import { modalities, site, speaking, steps } from "../data/site";
+import { art, modalities, site, speaking, steps } from "../data/site";
 import { ArtPlate } from "./ArtPlate";
 import { PillButton, Reveal, SectionHead } from "./primitives";
 
@@ -61,6 +61,7 @@ export function Approach() {
         <Reveal className="relative">
           <ArtPlate
             variant="circle"
+            src={art.circle}
             className="aspect-[4/5] w-full rounded-[28px] border border-forest/10"
             label="A circle of women journaling together in warm daylight"
           />
@@ -86,6 +87,7 @@ export function Speaking() {
         <Reveal className="relative">
           <ArtPlate
             variant="stage"
+            src={art.stage}
             className="aspect-[4/5] w-full rounded-[28px] border border-ivory/10"
             label="Rashidah speaking on a warmly lit stage before a blurred audience"
           />

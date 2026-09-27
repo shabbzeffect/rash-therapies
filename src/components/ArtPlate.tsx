@@ -13,17 +13,35 @@ export function ArtPlate({
   variant,
   className = "",
   label,
+  src,
+  eager = false,
 }: {
   variant: PlateVariant;
   className?: string;
   label?: string;
+  /** Real photograph path from `site.art`. Falls back to the SVG when empty. */
+  src?: string;
+  /** Set for above-the-fold imagery only. */
+  eager?: boolean;
 }) {
+  const alt = label ?? DESCRIPTIONS[variant];
+
+  if (src) {
+    return (
+      <div className={`grain relative overflow-hidden bg-parchment ${className}`}>
+        <img
+          src={src}
+          alt={alt}
+          loading={eager ? "eager" : "lazy"}
+          decoding="async"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div
-      role="img"
-      aria-label={label ?? DESCRIPTIONS[variant]}
-      className={`grain relative overflow-hidden bg-parchment ${className}`}
-    >
+    <div role="img" aria-label={alt} className={`grain relative overflow-hidden bg-parchment ${className}`}>
       <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" className="h-full w-full" aria-hidden="true">
         <defs>
           <linearGradient id={`sky-${variant}`} x1="0" y1="0" x2="0.4" y2="1">

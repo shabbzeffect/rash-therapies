@@ -1,8 +1,9 @@
 import { useMemo, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, CalendarCheck, Check, Clock, Copy, HeartHandshake, MapPin, Monitor } from "lucide-react";
+import { AlertCircle, ArrowLeft, CalendarCheck, Check, Clock, Copy, HeartHandshake, Loader2, MapPin, Monitor } from "lucide-react";
 import { booking, services, site } from "../data/site";
 import { PillButton, Reveal, SectionHead } from "./primitives";
+import { hasBookingEndpoint, submitBooking } from "../lib/booking";
 import { toast } from "../lib/toast";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -57,6 +58,9 @@ export function Booking() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
   const [ref, setRef] = useState("");
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  const [delivery, setDelivery] = useState<"endpoint" | "email">("endpoint");
 
   const set = <K extends keyof FormState>(key: K, value: FormState[K]) => {
     setForm((f) => ({ ...f, [key]: value }));
@@ -84,10 +88,34 @@ export function Booking() {
     setStep((s) => Math.min(3, s + 1));
   };
 
-  const submit = (event: FormEvent) => {
+  const submit = async (event: FormEvent) => {
     event.preventDefault();
-    if (!validateStep(3)) return;
-    setRef(makeRef());
+    if (!validateStep(3) || sending) return;
+
+    const reference = makeRef();
+    setSending(true);
+    setSendError(null);
+
+    const result = await submitBooking({
+      reference,
+      service: form.service,
+      mode: form.mode,
+      date: form.date,
+      time: form.time,
+      name: form.name.trim(),
+      email: form.email.trim(),
+      note: form.note.trim(),
+      submittedAt: new Date().toISOString(),
+      company: String(new FormData(event.currentTarget as HTMLFormElement).get("company") ?? ""),
+    });
+
+    setSending(false);
+    if (!result.ok) {
+      setSendError(result.reason);
+      return;
+    }
+    setDelivery(result.delivery);
+    setRef(reference);
     setStep(4);
   };
 
@@ -95,6 +123,7 @@ export function Booking() {
     setForm(EMPTY);
     setErrors({});
     setRef("");
+    setSendError(null);
     setStep(1);
   };
 
@@ -293,6 +322,13 @@ export function Booking() {
                   {step === 3 ? (
                     <fieldset className="mt-8 grid gap-4">
                       <legend className="sr-only">Your details</legend>
+
+                      {/* Honeypot: hidden from people, tempting to bots. */}
+                      <div aria-hidden="true" className="absolute h-0 w-0 overflow-hidden">
+                        <label htmlFor="bk-company">Company</label>
+                        <input id="bk-company" name="company" tabIndex={-1} autoComplete="off" defaultValue="" />
+                      </div>
+
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
                           <label htmlFor="bk-name" className="mb-1.5 block text-[12px] font-bold text-ink/70">
@@ -360,8 +396,30 @@ export function Booking() {
                       </div>
 
                       <p className="text-[12px] text-muted">
-                        No payment today. I will confirm by email within one working day.
+                        {hasBookingEndpoint
+                          ? "No payment today. I will confirm by email within one working day."
+                          : "No payment today. This opens a pre-filled email in your mail app — send it and I will confirm within one working day."}
                       </p>
+
+                      {sendError ? (
+                        <p
+                          role="alert"
+                          className="flex items-start gap-2.5 rounded-[18px] border border-clay/30 bg-clay/[0.07] px-4 py-3 text-[13px] leading-snug text-ink"
+                        >
+                          <AlertCircle size={15} className="mt-0.5 shrink-0 text-clay" />
+                          <span>
+                            {sendError}
+                            <a
+                              href={site.whatsappUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="ml-1 font-bold underline underline-offset-2"
+                            >
+                              WhatsApp me
+                            </a>
+                          </span>
+                        </p>
+                      ) : null}
                     </fieldset>
                   ) : null}
 
@@ -370,7 +428,8 @@ export function Booking() {
                       <button
                         type="button"
                         onClick={() => setStep((s) => s - 1)}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-bold text-muted transition-colors hover:text-ink"
+                        disabled={sending}
+                        className="inline-flex items-center gap-1.5 text-[13px] font-bold text-muted transition-colors hover:text-ink disabled:opacity-40"
                       >
                         <ArrowLeft size={14} />
                         Back
@@ -380,9 +439,15 @@ export function Booking() {
                     )}
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-[14px] font-bold text-ivory transition-transform duration-300 hover:-translate-y-0.5"
+                      disabled={sending}
+                      className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-[14px] font-bold text-ivory transition-transform duration-300 hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
                     >
-                      {step === 3 ? (
+                      {sending ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Holding your space…
+                        </>
+                      ) : step === 3 ? (
                         <>
                           <CalendarCheck size={16} />
                           Hold my space
@@ -410,7 +475,9 @@ export function Booking() {
                     Asante, {form.name.split(" ")[0]}. Your space is held.
                   </h3>
                   <p className="mx-auto mt-3 max-w-sm text-[14.5px] leading-relaxed text-muted">
-                    I have your request and will confirm by email within one working day. Nothing is charged today.
+                    {delivery === "endpoint"
+                      ? "I have your request and will confirm by email within one working day. Nothing is charged today."
+                      : "Your email app should have opened with the details filled in — send it and I will confirm within one working day. Nothing is charged today."}
                   </p>
 
                   <div className="mx-auto mt-8 max-w-sm rounded-[22px] border border-forest/12 bg-parchment p-6">

@@ -35,6 +35,27 @@ export const site = {
   },
 } as const;
 
+/**
+ * Photography slots. Leave a value empty to keep the art-directed SVG artwork.
+ * To use real photos, drop the files in `public/images/` and set the path here —
+ * nothing else needs to change.
+ *
+ * Recommended crops (all warm daylight, beige/sage, authentic Kenyan dignity):
+ *   portrait — confident African woman, late 30s, cream blazer, low bun, gold studs
+ *   room     — boucle chairs, travertine table, eucalyptus, arched window, sage wall
+ *   stage    — cream suit, microphone, blurred audience, warm spotlight
+ *   circle   — diverse women journaling on cushions, plants, daylight
+ *   detail   — journal and tea on linen, morning shadows
+ */
+export const art: Record<"portrait" | "room" | "stage" | "circle" | "detail" | "journal", string> = {
+  portrait: "",
+  room: "",
+  stage: "",
+  circle: "",
+  detail: "",
+  journal: "",
+};
+
 export const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },

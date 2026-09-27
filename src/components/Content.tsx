@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
-import { circle, journal, testimonials } from "../data/site";
+import { art, circle, journal, testimonials } from "../data/site";
 import { ArtPlate } from "./ArtPlate";
 import { Reveal, SectionHead, Stars } from "./primitives";
 import { toast } from "../lib/toast";
@@ -159,6 +159,7 @@ export function CircleAndJournal() {
               >
                 <ArtPlate
                   variant="journal"
+                  src={art.journal}
                   className="aspect-[4/3] w-full rounded-[18px]"
                   label={`Illustration for the article “${post.title}”`}
                 />
