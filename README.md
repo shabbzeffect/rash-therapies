@@ -11,7 +11,34 @@ npm install
 npm run dev     # http://localhost:5173
 npm run build   # tsc -b && vite build
 npm run lint    # oxlint
+npm run deploy  # build + publish to Vercel production
 ```
+
+## Deploy
+
+Live at **https://rash-therapies.vercel.app** (project `justshabirs-projects/rash-therapies`).
+
+```bash
+$env:VERCEL_TOKEN = "<your token>"   # or run `npx vercel login` once
+npm run deploy
+```
+
+`npm run deploy` runs `scripts/deploy.mjs`, which builds with Vite, assembles
+`.vercel/output` per the [Build Output API](https://vercel.com/docs/build-output-api-v3), then
+uploads it with `vercel deploy --prebuilt --prod`. No build runs on either side.
+
+**Why prebuilt?** Plain `vercel build` / `vercel --prod` fails in this environment with
+`spawn cmd.exe ENOENT`. The cause is that Node here cannot spawn `.cmd` shims with
+`shell: false` — the Vercel CLI's build step hits it even though its `npm ci` install step
+succeeds. Reproducible in both the project directory and a space-free copy of it, and
+independent of authentication. Going prebuilt sidesteps it entirely.
+
+If you deploy from a machine where the CLI can spawn normally, `npx vercel --prod` will work
+as usual and you can ignore this script. `vercel.json` pins the framework, build command,
+output directory and install command for that case.
+
+Prefer no CLI at all? Import the GitHub repo at
+`vercel.com/new` and Vercel will build `main` on its own infrastructure.
 
 ## Sections
 
