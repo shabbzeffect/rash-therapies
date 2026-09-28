@@ -34,19 +34,19 @@ export function FeesFaq() {
                 }`}
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className={`font-display text-xl ${fee.featured ? "text-ivory" : "text-ink"}`}>{fee.name}</h3>
+                  <h3 className={`font-display text-title ${fee.featured ? "text-ivory" : "text-ink"}`}>{fee.name}</h3>
                   <div className="text-right">
                     <p className={`font-display text-2xl ${fee.featured ? "text-gold" : "text-forest"}`}>
                       {fee.price}
                     </p>
-                    <p className={`text-[11.5px] ${fee.featured ? "text-ivory/55" : "text-muted"}`}>{fee.usd}</p>
+                    <p className={`text-meta ${fee.featured ? "text-ivory/55" : "text-muted"}`}>{fee.usd}</p>
                   </div>
                 </div>
-                <p className={`mt-3 text-[13.5px] leading-relaxed ${fee.featured ? "text-ivory/70" : "text-muted"}`}>
+                <p className={`mt-3 text-body-sm ${fee.featured ? "text-ivory/70" : "text-muted"}`}>
                   {fee.body}
                 </p>
                 {fee.featured ? (
-                  <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-3 py-1 text-[10.5px] font-bold uppercase tracking-[0.12em] text-gold">
+                  <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-gold/40 px-3 py-1 text-micro uppercase text-gold">
                     Most chosen
                   </p>
                 ) : null}
@@ -55,13 +55,13 @@ export function FeesFaq() {
           </div>
 
           <Reveal className="mt-5 rounded-[24px] border border-sage/30 bg-sage/[0.08] p-6">
-            <p className="flex items-center gap-2 text-[12px] font-extrabold uppercase tracking-[0.14em] text-sage-deep">
+            <p className="flex items-center gap-2 text-label font-extrabold uppercase tracking-[0.14em] text-sage-deep">
               <ShieldCheck size={15} />
               {ethics.title}
             </p>
             <ul className="mt-4 grid gap-3">
               {ethics.lines.map((line) => (
-                <li key={line} className="flex items-start gap-2.5 text-[13.5px] leading-relaxed text-ink/75">
+                <li key={line} className="flex items-start gap-2.5 text-body-sm text-ink/75">
                   <Check size={14} className="mt-1 shrink-0 text-sage-deep" />
                   {line}
                 </li>
@@ -72,7 +72,7 @@ export function FeesFaq() {
 
         <div>
           <p className="eyebrow text-sage-deep">Questions people actually ask</p>
-          <h2 className="mt-5 font-display text-[2rem] leading-[1.1] tracking-[-0.02em] text-ink sm:text-[2.5rem]">
+          <h2 className="mt-5 font-display text-display-lg text-ink lg:text-display-lg-wide">
             Before you decide anything
           </h2>
 
@@ -93,7 +93,7 @@ export function FeesFaq() {
                       className="flex w-full items-start justify-between gap-5 p-6 text-left"
                     >
                       <span
-                        className={`font-display text-[1.0625rem] leading-snug transition-colors ${
+                        className={`font-display text-title transition-colors ${
                           isOpen ? "text-sage-deep" : "text-ink"
                         }`}
                       >
@@ -117,7 +117,7 @@ export function FeesFaq() {
                         transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
                         className="overflow-hidden"
                       >
-                        <p className="px-6 pb-6 text-[14.5px] leading-[1.75] text-muted">{faq.a}</p>
+                        <p className="measure px-6 pb-6 text-body text-muted">{faq.a}</p>
                       </motion.div>
                     ) : null}
                   </AnimatePresence>
@@ -127,15 +127,15 @@ export function FeesFaq() {
           </div>
 
           <Reveal id="crisis" className="mt-8 rounded-[24px] border border-clay/30 bg-clay/[0.07] p-7">
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-clay">{site.crisis.title}</p>
-            <p className="mt-3 text-[14px] leading-[1.7] text-ink/80">{site.crisis.body}</p>
+            <p className="text-label font-bold text-clay-ink">{site.crisis.title}</p>
+            <p className="measure mt-3 text-body-sm text-ink/80">{site.crisis.body}</p>
             <ul className="mt-4 flex flex-wrap gap-3">
               {site.crisis.lines.map((line) => (
                 <li
                   key={line.label}
-                  className="rounded-full border border-clay/30 bg-white/70 px-4 py-2 text-[13px] font-bold text-ink"
+                  className="rounded-full border border-clay/30 bg-white/70 px-4 py-2 text-meta font-bold text-ink"
                 >
-                  {line.label}: <span className="text-clay">{line.value}</span>
+                  {line.label}: <span className="text-clay-ink">{line.value}</span>
                 </li>
               ))}
             </ul>

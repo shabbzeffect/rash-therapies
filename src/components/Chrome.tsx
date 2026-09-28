@@ -6,14 +6,14 @@ import { nav, site } from "../data/site";
 export function TopBar() {
   return (
     <div className="grain relative z-50 overflow-hidden bg-night text-ivory/85">
-      <div className="shell relative flex items-center justify-center gap-3 py-2 text-center text-[11.5px] sm:text-xs">
+      <div className="shell relative flex items-center justify-center gap-3 py-2 text-center text-meta sm:text-xs">
         <span className="hidden sm:inline">
           Now welcoming new clients — <span className="text-ivory/60">{site.serviceArea}</span>
         </span>
         <span className="sm:hidden">Now welcoming new clients</span>
         <a
           href="#book"
-          className="inline-flex items-center gap-1 rounded-full border border-gold/40 px-3 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.14em] text-gold-light transition-colors hover:bg-gold/15"
+          className="inline-flex items-center gap-1 rounded-full border border-gold/40 px-3 py-0.5 text-micro uppercase text-gold-light transition-colors hover:bg-gold/15"
         >
           Reserve your space
         </a>
@@ -50,12 +50,12 @@ export function Navbar() {
     >
       <div className="shell flex items-center gap-4 py-3.5">
         <a href="#top" className="flex shrink-0 items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-forest font-display text-lg text-ivory">
+          <span className="grid h-10 w-10 place-items-center rounded-full border border-gold/40 bg-forest font-display text-title text-ivory">
             {site.monogram}
           </span>
           <span className="hidden leading-tight sm:block">
-            <span className="block font-display text-[15px] text-ink">{site.name}</span>
-            <span className="block text-[10.5px] font-semibold uppercase tracking-[0.14em] text-muted">
+            <span className="block font-display text-body-sm text-ink">{site.name}</span>
+            <span className="block text-micro uppercase text-muted">
               Psychologist • Wellness Advocate
             </span>
           </span>
@@ -66,7 +66,7 @@ export function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="relative text-[13.5px] font-semibold text-ink/75 transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-clay after:transition-all hover:after:w-full"
+              className="relative text-body-sm font-semibold text-ink/75 transition-colors hover:text-ink after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-clay after:transition-all hover:after:w-full"
             >
               {item.label}
             </a>
@@ -76,14 +76,14 @@ export function Navbar() {
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
           <a
             href={site.phoneHref}
-            className="hidden items-center gap-2 text-[13px] font-semibold text-ink/75 transition-colors hover:text-ink xl:flex"
+            className="hidden items-center gap-2 text-meta font-semibold text-ink/75 transition-colors hover:text-ink xl:flex"
           >
             <Phone size={14} className="text-sage-deep" />
             {site.phone}
           </a>
           <a
             href="#book"
-            className="rounded-full bg-forest px-5 py-2.5 text-[12.5px] font-bold text-ivory transition-all hover:bg-forest-soft"
+            className="rounded-full bg-forest px-5 py-2.5 text-meta font-bold text-ivory transition-all hover:bg-forest-soft"
           >
             Book session
           </a>
@@ -114,14 +114,14 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-forest/8 py-3.5 text-[15px] font-semibold text-ink/80 last:border-0"
+                  className="border-b border-forest/8 py-3.5 text-body-sm font-semibold text-ink/80 last:border-0"
                 >
                   {item.label}
                 </a>
               ))}
               <a
                 href={site.phoneHref}
-                className="mt-4 flex items-center gap-2 pb-2 text-[14px] font-semibold text-sage-deep"
+                className="mt-4 flex items-center gap-2 pb-2 text-body-sm font-semibold text-sage-deep"
               >
                 <Phone size={14} />
                 {site.phone}

@@ -36,17 +36,17 @@ export function About() {
           </div>
           <div className="absolute -left-4 top-8 rounded-2xl bg-forest px-4 py-3 text-ivory shadow-soft sm:-left-6">
             <p className="font-display text-2xl leading-none">{site.yearsLabel}</p>
-            <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.14em] text-gold">Years of practice</p>
+            <p className="mt-1 text-micro uppercase text-gold">Years of practice</p>
           </div>
         </Reveal>
 
         <div>
           <Eyebrow>Meet your psychologist</Eyebrow>
-          <h2 className="mt-5 font-display text-[2.25rem] leading-[1.06] tracking-[-0.02em] text-ink sm:text-[2.75rem] lg:text-[3.1rem]">
+          <h2 className="mt-5 font-display text-display-lg text-ink lg:text-display-lg-wide">
             Warm like a sister.
             <span className="block italic text-sage-deep">Sharp like a scientist.</span>
           </h2>
-          <div className="mt-6 grid gap-5 text-[1.0625rem] leading-[1.75] text-muted">
+          <div className="measure mt-6 grid gap-5 text-lead text-muted">
             <p>
               Twelve years ago I sat across from a CFO in Westlands who could not name what was wrong — only that
               nothing felt like it counted any more. Today I work with executives, mums, students, couples and
@@ -70,35 +70,33 @@ export function About() {
                   className="group rounded-[22px] border border-forest/10 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-forest/20 hover:shadow-soft"
                 >
                   <span className="grid h-9 w-9 place-items-center rounded-full bg-sage/18 text-sage-deep">
-                    <Icon size={16} strokeWidth={1.8} />
+                    <Icon size={16} strokeWidth={1.75} />
                   </span>
-                  <p className="mt-3.5 text-[12px] font-extrabold uppercase tracking-[0.12em] text-ink/50">{c.title}</p>
-                  <p className="mt-2 text-[13px] font-semibold leading-snug text-ink">{c.lines[0]}</p>
-                  <p className="mt-1 text-[12.5px] leading-snug text-muted">{c.lines[1]}</p>
+                  <p className="mt-3.5 text-label font-extrabold uppercase tracking-[0.12em] text-ink/50">{c.title}</p>
+                  <p className="mt-2 text-meta font-semibold leading-snug text-ink">{c.lines[0]}</p>
+                  <p className="mt-1 text-meta leading-snug text-muted">{c.lines[1]}</p>
                 </Reveal>
               );
             })}
           </div>
 
-          <Reveal className="mt-9 rounded-[26px] border-l-2 border-clay bg-parchment p-7">
-            <Quote size={22} className="text-clay" />
-            <p className="mt-4 font-display text-[1.5rem] leading-[1.35] text-ink sm:text-[1.75rem]">
+          <Reveal className="mt-10 border-t border-gold/40 pt-7">
+            <Quote size={22} className="text-clay-ink" />
+            <p className="measure mt-4 font-display text-display-md text-ink lg:text-display-md-wide">
               You don't have to earn rest. You don't have to be falling apart to deserve care. You only have to walk
               in the door.
             </p>
-            <p className="mt-5 text-[12px] font-bold uppercase tracking-[0.16em] text-muted">
-              {site.name} — {site.credentials}
-            </p>
+            <p className="mt-5 font-display text-lead text-ink">{site.name}</p>
+            <p className="mt-1 text-meta text-muted">{site.credentials}</p>
           </Reveal>
         </div>
       </div>
 
       <div className="shell mt-24 grid gap-6 border-t border-forest/10 pt-14 md:grid-cols-3 lg:mt-28">
         {pillars.map((p, i) => (
-          <Reveal key={p.title} delay={i * 0.08}>
-            <span className="font-display text-[2.5rem] leading-none text-sand">0{i + 1}</span>
-            <h3 className="mt-4 font-display text-xl text-ink">{p.title}</h3>
-            <p className="mt-2.5 text-[14.5px] leading-[1.7] text-muted">{p.body}</p>
+          <Reveal key={p.title} delay={i * 0.08} className="border-t border-forest/10 pt-6">
+            <h3 className="font-display text-title text-ink">{p.title}</h3>
+            <p className="measure mt-2.5 text-body text-muted">{p.body}</p>
           </Reveal>
         ))}
       </div>
@@ -127,7 +125,7 @@ export function Stats() {
             const isDecimal = s.value.includes(".");
             return (
               <Reveal key={s.label} delay={i * 0.08} className="text-center">
-                <p className="font-display text-[3rem] leading-none text-ivory sm:text-[3.5rem]">
+                <p className="font-display text-figure text-ivory lg:text-figure-wide">
                   {isDecimal ? (
                     <>
                       <Counter to={parseFloat(s.value)} decimals={1} />
@@ -137,8 +135,8 @@ export function Stats() {
                     s.value
                   )}
                 </p>
-                <p className="mt-4 text-[12.5px] font-bold uppercase tracking-[0.14em] text-gold">{s.label}</p>
-                <p className="mt-1.5 text-[12px] text-ivory/50">{s.detail}</p>
+                <p className="mt-4 text-meta font-bold uppercase tracking-[0.14em] text-gold">{s.label}</p>
+                <p className="mt-1.5 text-label text-ivory/50">{s.detail}</p>
               </Reveal>
             );
           })}
@@ -177,19 +175,19 @@ export function Services() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <span className="grid h-11 w-11 place-items-center rounded-full bg-sage/15 text-sage-deep transition-colors duration-300 group-hover:bg-sage/25">
-                      <Icon size={19} strokeWidth={1.8} />
+                      <Icon size={19} strokeWidth={1.75} />
                     </span>
                     {service.badge ? (
-                      <span className="rounded-full border border-gold/45 bg-gold/12 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.12em] text-[#8a6f34]">
+                      <span className="rounded-full border border-gold/45 bg-gold/12 px-3 py-1 text-micro uppercase text-gold-ink">
                         {service.badge}
                       </span>
                     ) : null}
                   </div>
-                  <h3 className="mt-6 font-display text-[1.375rem] leading-tight text-ink">{service.title}</h3>
-                  <p className="mt-3 text-[14.5px] leading-[1.7] text-muted">{service.body}</p>
+                  <h3 className="mt-6 font-display text-title leading-tight text-ink">{service.title}</h3>
+                  <p className="mt-3 text-body text-muted">{service.body}</p>
                   <ul className="mt-5 grid gap-2">
                     {service.points.map((point) => (
-                      <li key={point} className="flex items-start gap-2.5 text-[13.5px] text-ink/75">
+                      <li key={point} className="flex items-start gap-2.5 text-body-sm text-ink/75">
                         <span aria-hidden="true" className="mt-2 h-1 w-1 shrink-0 rounded-full bg-clay" />
                         {point}
                       </li>
@@ -197,12 +195,12 @@ export function Services() {
                   </ul>
                   <div className="mt-auto flex items-end justify-between gap-4 border-t border-forest/8 pt-6">
                     <div>
-                      <p className="font-display text-lg text-ink">{service.price}</p>
-                      <p className="text-[11.5px] text-muted">{service.duration}</p>
+                      <p className="font-display text-title text-ink">{service.price}</p>
+                      <p className="text-meta text-muted">{service.duration}</p>
                     </div>
                     <a
                       href="#book"
-                      className="text-[12.5px] font-bold text-forest underline-offset-4 transition-colors hover:text-clay hover:underline"
+                      className="text-meta font-bold text-forest underline-offset-4 transition-colors hover:text-clay-ink hover:underline"
                     >
                       Book →
                     </a>
@@ -214,8 +212,8 @@ export function Services() {
         </div>
 
         <Reveal className="grain relative mt-10 overflow-hidden rounded-[28px] bg-forest px-8 py-12 text-center text-ivory sm:px-12">
-          <h3 className="font-display text-[1.75rem] leading-tight sm:text-[2.25rem]">Not sure where you fit?</h3>
-          <p className="mx-auto mt-4 max-w-lg text-[15px] leading-relaxed text-ivory/70">
+          <h3 className="font-display text-display-md lg:text-display-md-wide">Not sure where you fit?</h3>
+          <p className="mx-auto mt-4 max-w-lg text-lead text-ivory/70">
             That is exactly what the free discovery call is for. We will work out together whether this is the right
             kind of help for you — even if the answer is another therapist.
           </p>

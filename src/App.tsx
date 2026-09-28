@@ -13,7 +13,7 @@ export default function App() {
     <div className="min-h-dvh bg-ivory">
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-forest focus:px-5 focus:py-2.5 focus:text-[13px] focus:font-bold focus:text-ivory"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-forest focus:px-5 focus:py-2.5 focus:text-body-sm focus:font-bold focus:text-ivory"
       >
         Skip to content
       </a>

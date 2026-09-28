@@ -58,7 +58,7 @@ export function PillButton({
   className?: string;
 }) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-bold transition-all duration-300 hover:-translate-y-0.5";
+    "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-body-sm font-bold transition-all duration-300 hover:-translate-y-0.5";
   const styles = {
     primary: "bg-forest text-ivory shadow-soft hover:bg-forest-soft",
     light: "bg-ivory text-forest hover:bg-white",
@@ -101,14 +101,14 @@ export function SectionHead({
     <div className={align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-5 font-display text-[2.25rem] leading-[1.06] tracking-[-0.02em] sm:text-[2.75rem] lg:text-[3.25rem] ${
-          tone === "light" ? "text-ivory" : "text-ink"
-        }`}
+      className={`mt-5 font-display text-display-lg lg:text-display-lg-wide ${
+        tone === "light" ? "text-ivory" : "text-ink"
+      }`}
       >
         {title}
       </h2>
       {intro ? (
-        <p className={`mt-5 text-[1.0625rem] leading-[1.7] ${tone === "light" ? "text-ivory/70" : "text-muted"}`}>
+        <p className={`measure mt-5 text-lead ${tone === "light" ? "text-ivory/70" : "text-muted"}`}>
           {intro}
         </p>
       ) : null}

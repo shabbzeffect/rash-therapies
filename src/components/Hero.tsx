@@ -9,8 +9,8 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative overflow-hidden bg-ivory">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+    <section id="top" className="relative bg-ivory">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="slow-spin absolute -right-40 -top-56 h-[38rem] w-[38rem] rounded-full bg-sage/25 blur-3xl" />
         <div className="absolute -left-52 top-40 h-[32rem] w-[32rem] rounded-full bg-gold/20 blur-3xl" />
         <div className="absolute bottom-24 right-1/3 h-72 w-72 rounded-full bg-clay/12 blur-3xl" />
@@ -23,7 +23,7 @@ export function Hero() {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-forest/12 bg-white/70 py-1.5 pl-3 pr-4 text-[11px] font-bold uppercase tracking-[0.14em] text-ink/70 backdrop-blur"
+            className="inline-flex items-center gap-2.5 rounded-full border border-forest/15 bg-ivory py-1.5 pl-3 pr-4 text-micro uppercase text-ink shadow-soft"
           >
             <span className="relative flex h-1.5 w-1.5">
               <span className="pulse-dot absolute inline-flex h-full w-full rounded-full bg-sage-deep" />
@@ -36,7 +36,7 @@ export function Hero() {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-            className="mt-7 font-display text-[3.4rem] leading-[0.98] tracking-[-0.03em] text-ink sm:text-[4.4rem] lg:text-[5.1rem]"
+            className="mt-7 font-display text-display-xl text-ink lg:text-display-xl-wide"
           >
             {site.tagline}
             <span className="block italic text-sage-deep">{site.tagline2}</span>
@@ -46,7 +46,7 @@ export function Hero() {
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
-            className="mt-7 max-w-xl text-[1.0625rem] leading-[1.75] text-muted"
+            className="mt-7 max-w-xl text-lead text-muted"
           >
             {site.intro}
           </motion.p>
@@ -77,7 +77,7 @@ export function Hero() {
               {AVATARS.map((a, i) => (
                 <span
                   key={a}
-                  className="grid h-9 w-9 place-items-center rounded-full border-2 border-ivory bg-forest text-[11px] font-bold text-ivory"
+                  className="grid h-9 w-9 place-items-center rounded-full border-2 border-ivory bg-forest text-micro text-ivory"
                   style={{ opacity: 1 - i * 0.12 }}
                 >
                   {a}
@@ -86,15 +86,15 @@ export function Hero() {
             </div>
             <div className="leading-tight">
               <Stars />
-              <p className="mt-1 text-[12.5px] text-muted">
+              <p className="mt-1 text-meta text-muted">
                 <span className="font-bold text-ink">{site.rating}</span> from {site.reviews} reviews
               </p>
             </div>
             <div className="h-9 w-px bg-forest/12" />
-            <p className="text-[12.5px] leading-tight text-muted">
-              <span className="font-display text-lg text-ink">{site.yearsLabel}</span> years
+            <p className="text-meta leading-tight text-muted">
+              <span className="font-display text-title text-ink">{site.yearsLabel}</span> years
               <br />
-              <span className="font-display text-lg text-ink">{site.clients}</span> lives
+              <span className="font-display text-title text-ink">{site.clients}</span> lives
             </p>
           </motion.div>
         </div>
@@ -105,7 +105,7 @@ export function Hero() {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.14 }}
           className="relative mx-auto w-full max-w-md lg:max-w-none"
         >
-          <div className="relative rounded-t-full rounded-b-[28px] border border-gold/45 p-2.5 shadow-lift">
+          <div className="relative overflow-hidden rounded-t-full rounded-b-[28px] border border-gold/45 p-2.5 shadow-lift">
             <ArtPlate
               variant="portrait"
               src={art.portrait}
@@ -113,16 +113,32 @@ export function Hero() {
               className="arch-top aspect-[4/5] w-full"
               label={`${site.name}, ${site.role}, in her studio in ${site.location}`}
             />
+            {/* The one authored moment on the page: a single slow pass of
+                daylight across the arch, once, on load. Soft-light blend keeps
+                it felt rather than seen. */}
+            {!reduce ? (
+              <motion.span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 rounded-t-full rounded-b-[28px] mix-blend-soft-light"
+                style={{
+                  background:
+                    "linear-gradient(104deg, transparent 34%, rgba(255,253,246,0.92) 50%, transparent 66%)",
+                }}
+                initial={{ x: "-115%", opacity: 0 }}
+                animate={{ x: "115%", opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 2.6, delay: 0.5, ease: [0.4, 0, 0.2, 1] }}
+              />
+            ) : null}
           </div>
 
           <motion.div
-            className="drift absolute -left-3 top-10 hidden rounded-2xl border border-white/70 bg-white/80 px-4 py-3 shadow-soft backdrop-blur-md sm:block lg:-left-10"
+            className="drift absolute -left-3 top-10 hidden rounded-2xl border border-forest/10 bg-ivory px-4 py-3 shadow-soft sm:block lg:-left-10"
             animate={reduce ? {} : { y: [0, -8, 0] }}
             transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
           >
             <ShieldCheck size={16} className="text-sage-deep" />
-            <p className="mt-1.5 text-[12px] font-bold text-ink">Confidential & safe</p>
-            <p className="text-[10.5px] text-muted">KCPA ethics, always</p>
+            <p className="mt-1.5 text-label font-bold text-ink">Confidential & safe</p>
+            <p className="text-micro text-muted">KCPA ethics, always</p>
           </motion.div>
 
           <motion.div
@@ -130,12 +146,12 @@ export function Hero() {
             animate={reduce ? {} : { y: [0, 9, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gold">Next opening</p>
-            <p className="mt-1.5 font-display text-lg leading-tight">Thursday, 10:30 AM</p>
-            <p className="text-[11px] text-ivory/60">East Africa Time</p>
+            <p className="text-micro uppercase tracking-[0.18em] text-gold">Next opening</p>
+            <p className="mt-1.5 font-display text-title leading-tight">Thursday, 10:30 AM</p>
+            <p className="text-micro text-ivory/60">East Africa Time</p>
             <a
               href="#book"
-              className="mt-3 inline-flex items-center gap-1.5 text-[12px] font-bold text-gold-light underline-offset-4 hover:underline"
+              className="mt-3 inline-flex items-center gap-1.5 text-label font-bold text-gold-light underline-offset-4 hover:underline"
             >
               Claim this slot
               <ArrowRight size={13} />
@@ -153,10 +169,10 @@ function Marquee() {
   const reduce = useReducedMotion();
   const items = [...marquee, ...marquee];
   return (
-    <div className="grain relative overflow-hidden bg-forest py-4 text-ivory">
+    <div className="marquee-host grain relative overflow-hidden bg-forest py-4 text-ivory">
       <div className={reduce ? "flex flex-wrap justify-center gap-x-6 gap-y-1 px-6" : "marquee-track"}>
         {items.map((item, i) => (
-          <span key={`${item}-${i}`} className="flex shrink-0 items-center gap-6 px-6 text-[13px] font-semibold tracking-[0.02em]">
+          <span key={`${item}-${i}`} className="flex shrink-0 items-center gap-6 px-6 text-meta font-semibold tracking-[0.02em]">
             {item}
             <span aria-hidden="true" className="text-gold">
               •
@@ -173,10 +189,10 @@ export function FeaturedStrip() {
     <section className="border-b border-forest/8 bg-ivory py-12">
       <div className="shell">
         <Reveal className="flex flex-col items-center gap-6 text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted">As featured in</p>
+          <p className="text-micro uppercase tracking-[0.2em] text-muted">As featured in</p>
           <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
             {featured.map((f) => (
-              <li key={f} className="font-display text-lg italic text-ink/45">
+              <li key={f} className="font-display text-title italic text-ink/45">
                 {f}
               </li>
             ))}

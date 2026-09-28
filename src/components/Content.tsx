@@ -82,16 +82,16 @@ export function Stories() {
                 aria-live="polite"
               >
                 <Stars />
-                <blockquote className="mt-7 max-w-3xl font-display text-[1.625rem] leading-[1.35] text-ink sm:text-[2rem] lg:text-[2.375rem]">
+                <blockquote className="mt-7 max-w-3xl font-display text-display-md text-ink lg:text-display-md-wide">
                   “{active.quote}”
                 </blockquote>
                 <figcaption className="mt-8 flex items-center gap-4">
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-forest font-display text-lg text-ivory">
+                  <span className="grid h-12 w-12 place-items-center rounded-full bg-forest font-display text-title text-ivory">
                     {active.name.charAt(0)}
                   </span>
                   <span>
-                    <span className="block text-[14.5px] font-bold text-ink">{active.name}</span>
-                    <span className="block text-[12.5px] text-muted">{active.role}</span>
+                    <span className="block text-body-sm font-bold text-ink">{active.name}</span>
+                    <span className="block text-meta text-muted">{active.role}</span>
                   </span>
                 </figcaption>
               </motion.figure>
@@ -114,7 +114,7 @@ export function Stories() {
                 </li>
               ))}
             </ul>
-            <p className="text-[11.5px] text-muted">Shared with permission, names changed.</p>
+            <p className="text-meta text-muted">Shared with permission, names changed.</p>
           </div>
         </div>
       </div>
@@ -129,17 +129,17 @@ export function CircleAndJournal() {
         <Reveal className="grain relative overflow-hidden rounded-[28px] bg-forest p-9 text-ivory sm:p-12">
           <div id="circle" className="scroll-mt-28">
             <p className="eyebrow text-gold">{circle.kicker}</p>
-            <h2 className="mt-5 font-display text-[1.875rem] leading-[1.15] tracking-[-0.02em] sm:text-[2.25rem]">
+            <h2 className="mt-5 font-display text-display-md lg:text-display-md-wide">
               {circle.title}
             </h2>
-            <p className="mt-5 text-[15px] leading-[1.7] text-ivory/70">{circle.body}</p>
-            <p className="mt-6 text-[12px] font-bold uppercase tracking-[0.14em] text-gold">{circle.readers}</p>
+            <p className="measure mt-5 text-lead text-ivory/70">{circle.body}</p>
+            <p className="mt-6 text-label font-bold text-gold">{circle.readers}</p>
             <NewsletterForm />
             <ul className="mt-9 grid gap-3 border-t border-ivory/12 pt-7 sm:grid-cols-3">
               {circle.themes.map((t) => (
                 <li key={t.month}>
-                  <p className="text-[10.5px] font-bold uppercase tracking-[0.16em] text-gold">{t.month}</p>
-                  <p className="mt-1 text-[13px] text-ivory/70">{t.title}</p>
+                  <p className="text-micro uppercase text-gold">{t.month}</p>
+                  <p className="mt-1 text-meta text-ivory/70">{t.title}</p>
                 </li>
               ))}
             </ul>
@@ -148,7 +148,7 @@ export function CircleAndJournal() {
 
         <Reveal id="journal" delay={0.08} className="scroll-mt-28">
           <p className="eyebrow text-sage-deep">From the journal</p>
-          <h2 className="mt-5 font-display text-[1.875rem] leading-[1.15] tracking-[-0.02em] text-ink sm:text-[2.25rem]">
+          <h2 className="mt-5 font-display text-display-md text-ink lg:text-display-md-wide">
             Thoughts worth sitting with
           </h2>
           <div className="mt-9 grid gap-4">
@@ -164,18 +164,18 @@ export function CircleAndJournal() {
                   label={`Illustration for the article “${post.title}”`}
                 />
                 <div className="flex flex-col justify-center p-1 sm:pr-3">
-                  <p className="flex items-center gap-2 text-[10.5px] font-extrabold uppercase tracking-[0.14em] text-clay">
+                  <p className="flex items-center gap-2 text-micro uppercase text-clay-ink">
                     {post.category}
                     <span aria-hidden="true" className="h-1 w-1 rounded-full bg-forest/25" />
                     <span className="text-muted">{post.time}</span>
                   </p>
-                  <h3 className="mt-2.5 font-display text-[1.1875rem] leading-snug text-ink transition-colors group-hover:text-sage-deep">
+                  <h3 className="mt-2.5 font-display text-title leading-snug text-ink transition-colors group-hover:text-sage-deep">
                     {post.title}
                   </h3>
-                  <p className="mt-2 text-[13.5px] leading-[1.65] text-muted">{post.excerpt}</p>
+                  <p className="mt-2 text-body-sm text-muted">{post.excerpt}</p>
                   <a
                     href="#contact"
-                    className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-bold text-forest underline-offset-4 transition-colors hover:text-clay hover:underline"
+                    className="mt-4 inline-flex items-center gap-1.5 text-meta font-bold text-forest underline-offset-4 transition-colors hover:text-clay-ink hover:underline"
                   >
                     Read insight
                     <ArrowRight size={13} />
@@ -219,12 +219,12 @@ function NewsletterForm() {
         />
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-full bg-ivory px-7 py-3.5 text-[0.9375rem] font-bold text-forest transition-transform duration-300 hover:-translate-y-0.5"
+          className="inline-flex items-center justify-center rounded-full bg-ivory px-7 py-3.5 text-body-sm font-bold text-forest transition-transform duration-300 hover:-translate-y-0.5"
         >
           {circle.cta}
         </button>
       </div>
-      <p className="mt-3 text-[11.5px] text-ivory/50">
+      <p className="mt-3 text-meta text-ivory/50">
         Free forever. One note a week on Sundays. Unsubscribe in a click.
       </p>
     </form>

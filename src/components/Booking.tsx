@@ -148,13 +148,13 @@ export function Booking() {
               return (
                 <li key={row.label} className="flex items-start gap-4">
                   <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gold/30 text-gold">
-                    <Icon size={15} strokeWidth={1.8} />
+                    <Icon size={15} strokeWidth={1.75} />
                   </span>
                   <span>
-                    <span className="block text-[10.5px] font-extrabold uppercase tracking-[0.16em] text-ivory/40">
+                    <span className="block text-micro uppercase text-ivory/40">
                       {row.label}
                     </span>
-                    <span className="mt-1 block text-[14.5px] leading-relaxed text-ivory/80">{row.value}</span>
+                    <span className="mt-1 block text-body text-ivory/80">{row.value}</span>
                   </span>
                 </li>
               );
@@ -162,10 +162,10 @@ export function Booking() {
           </ul>
 
           <Reveal className="mt-12 rounded-[24px] border border-clay/35 bg-clay/10 p-6">
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#f0b48c]">
+            <p className="text-label font-bold text-clay-light">
               {site.crisis.title}
             </p>
-            <p className="mt-2.5 text-[13.5px] leading-relaxed text-ivory/70">
+            <p className="mt-2.5 text-body-sm text-ivory/70">
               In crisis in Kenya? Call the Kenya Red Cross on 1199 or Befrienders Kenya on 0722 178 177. Free,
               confidential and always open.
             </p>
@@ -193,7 +193,7 @@ export function Booking() {
                       {[1, 2, 3].map((n) => (
                         <li key={n} className="flex items-center gap-2">
                           <span
-                            className={`grid h-7 w-7 place-items-center rounded-full text-[11.5px] font-bold transition-colors ${
+                            className={`grid h-7 w-7 place-items-center rounded-full text-meta font-bold transition-colors ${
                               step >= n ? "bg-forest text-ivory" : "bg-forest/10 text-muted"
                             }`}
                           >
@@ -208,7 +208,7 @@ export function Booking() {
                         </li>
                       ))}
                     </ol>
-                    <span className="text-[11.5px] font-semibold text-muted">Step {step} of 3</span>
+                    <span className="text-meta font-semibold text-muted">Step {step} of 3</span>
                   </div>
                   <div className="mt-3 h-1 overflow-hidden rounded-full bg-forest/10">
                     <motion.div
@@ -220,7 +220,7 @@ export function Booking() {
 
                   {step === 1 ? (
                     <fieldset className="mt-8">
-                      <legend className="font-display text-[1.375rem] text-ink">
+                      <legend className="font-display text-title text-ink">
                         What would you like support with?
                       </legend>
                       <div className="mt-5 grid gap-2.5 sm:grid-cols-2">
@@ -236,8 +236,8 @@ export function Booking() {
                                 : "border-forest/12 bg-white hover:border-forest/30"
                             }`}
                           >
-                            <span className="block text-[13.5px] font-bold text-ink">{s.title}</span>
-                            <span className="mt-1 block text-[11.5px] text-muted">
+                            <span className="block text-body-sm font-bold text-ink">{s.title}</span>
+                            <span className="mt-1 block text-meta text-muted">
                               {s.price} · {s.duration}
                             </span>
                           </button>
@@ -245,7 +245,7 @@ export function Booking() {
                       </div>
                       {errors.service ? <FieldError>{errors.service}</FieldError> : null}
 
-                      <legend className="mt-8 font-display text-[1.375rem] text-ink">How shall we meet?</legend>
+                      <legend className="mt-8 font-display text-title text-ink">How shall we meet?</legend>
                       <div className="mt-4 flex flex-wrap gap-2.5">
                         {booking.modes.map((m) => (
                           <button
@@ -253,7 +253,7 @@ export function Booking() {
                             type="button"
                             onClick={() => set("mode", m)}
                             aria-pressed={form.mode === m}
-                            className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-[13px] font-bold transition-all duration-200 ${
+                            className={`inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-meta font-bold transition-all duration-200 ${
                               form.mode === m
                                 ? "border-forest bg-forest text-ivory"
                                 : "border-forest/15 bg-white text-ink/75 hover:border-forest/35"
@@ -270,8 +270,8 @@ export function Booking() {
 
                   {step === 2 ? (
                     <fieldset className="mt-8">
-                      <legend className="font-display text-[1.375rem] text-ink">Choose a day</legend>
-                      <p className="mt-1.5 text-[12.5px] text-muted">
+                      <legend className="font-display text-title text-ink">Choose a day</legend>
+                      <p className="mt-1.5 text-meta text-muted">
                         Tuesday to Saturday only — Sundays and Mondays are days off.
                       </p>
                       <div className="mt-5 grid grid-cols-5 gap-2 sm:grid-cols-5">
@@ -287,17 +287,17 @@ export function Booking() {
                                 : "border-forest/12 bg-white hover:border-forest/30"
                             }`}
                           >
-                            <span className="block text-[10.5px] font-bold uppercase tracking-[0.1em] opacity-70">
+                            <span className="block text-micro uppercase tracking-[0.1em] opacity-70">
                               {d.day}
                             </span>
-                            <span className="mt-0.5 block font-display text-lg leading-none">{d.date}</span>
-                            <span className="block text-[10px] opacity-60">{d.month}</span>
+                            <span className="mt-0.5 block font-display text-title leading-none">{d.date}</span>
+                            <span className="block text-micro opacity-60">{d.month}</span>
                           </button>
                         ))}
                       </div>
                       {errors.date ? <FieldError>{errors.date}</FieldError> : null}
 
-                      <legend className="mt-8 font-display text-[1.375rem] text-ink">And a time</legend>
+                      <legend className="mt-8 font-display text-title text-ink">And a time</legend>
                       <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
                         {booking.times.map((t) => (
                           <button
@@ -305,7 +305,7 @@ export function Booking() {
                             type="button"
                             onClick={() => set("time", t)}
                             aria-pressed={form.time === t}
-                            className={`rounded-full border py-2.5 text-[13px] font-bold transition-all duration-200 ${
+                            className={`rounded-full border py-2.5 text-meta font-bold transition-all duration-200 ${
                               form.time === t
                                 ? "border-forest bg-forest text-ivory"
                                 : "border-forest/15 bg-white text-ink/75 hover:border-forest/35"
@@ -331,7 +331,7 @@ export function Booking() {
 
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
-                          <label htmlFor="bk-name" className="mb-1.5 block text-[12px] font-bold text-ink/70">
+                          <label htmlFor="bk-name" className="mb-1.5 block text-label font-bold text-ink/70">
                             Your name
                           </label>
                           <input
@@ -345,7 +345,7 @@ export function Booking() {
                           {errors.name ? <FieldError>{errors.name}</FieldError> : null}
                         </div>
                         <div>
-                          <label htmlFor="bk-email" className="mb-1.5 block text-[12px] font-bold text-ink/70">
+                          <label htmlFor="bk-email" className="mb-1.5 block text-label font-bold text-ink/70">
                             Email
                           </label>
                           <input
@@ -361,7 +361,7 @@ export function Booking() {
                         </div>
                       </div>
                       <div>
-                        <label htmlFor="bk-note" className="mb-1.5 block text-[12px] font-bold text-ink/70">
+                        <label htmlFor="bk-note" className="mb-1.5 block text-label font-bold text-ink/70">
                           Anything you would like me to know? <span className="font-normal text-muted">(optional)</span>
                         </label>
                         <textarea
@@ -375,10 +375,10 @@ export function Booking() {
                       </div>
 
                       <div className="mt-2 rounded-[20px] border border-forest/10 bg-parchment p-5">
-                        <p className="text-[10.5px] font-extrabold uppercase tracking-[0.16em] text-sage-deep">
+                        <p className="text-micro uppercase text-sage-deep">
                           Your request
                         </p>
-                        <dl className="mt-3 grid gap-2 text-[13.5px]">
+                        <dl className="mt-3 grid gap-2 text-body-sm">
                           <Row label="Support" value={form.service} />
                           <Row label="Meeting" value={form.mode} />
                           <Row
@@ -395,7 +395,7 @@ export function Booking() {
                         </dl>
                       </div>
 
-                      <p className="text-[12px] text-muted">
+                      <p className="text-label text-muted">
                         {hasBookingEndpoint
                           ? "No payment today. I will confirm by email within one working day."
                           : "No payment today. This opens a pre-filled email in your mail app — send it and I will confirm within one working day."}
@@ -404,9 +404,9 @@ export function Booking() {
                       {sendError ? (
                         <p
                           role="alert"
-                          className="flex items-start gap-2.5 rounded-[18px] border border-clay/30 bg-clay/[0.07] px-4 py-3 text-[13px] leading-snug text-ink"
+                          className="flex items-start gap-2.5 rounded-[18px] border border-clay/30 bg-clay/[0.07] px-4 py-3 text-meta leading-snug text-ink"
                         >
-                          <AlertCircle size={15} className="mt-0.5 shrink-0 text-clay" />
+                          <AlertCircle size={15} className="mt-0.5 shrink-0 text-clay-ink" />
                           <span>
                             {sendError}
                             <a
@@ -429,7 +429,7 @@ export function Booking() {
                         type="button"
                         onClick={() => setStep((s) => s - 1)}
                         disabled={sending}
-                        className="inline-flex items-center gap-1.5 text-[13px] font-bold text-muted transition-colors hover:text-ink disabled:opacity-40"
+                        className="inline-flex items-center gap-1.5 text-meta font-bold text-muted transition-colors hover:text-ink disabled:opacity-40"
                       >
                         <ArrowLeft size={14} />
                         Back
@@ -440,7 +440,7 @@ export function Booking() {
                     <button
                       type="submit"
                       disabled={sending}
-                      className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-[14px] font-bold text-ivory transition-transform duration-300 hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
+                      className="inline-flex items-center gap-2 rounded-full bg-forest px-7 py-3.5 text-body-sm font-bold text-ivory transition-transform duration-300 hover:-translate-y-0.5 disabled:translate-y-0 disabled:opacity-70"
                     >
                       {sending ? (
                         <>
@@ -458,7 +458,7 @@ export function Booking() {
                     </button>
                   </div>
 
-                  <p className="mt-5 text-center text-[11.5px] text-muted">{site.reassurance}</p>
+                  <p className="mt-5 text-center text-meta text-muted">{site.reassurance}</p>
                 </motion.form>
               ) : (
                 <motion.div
@@ -469,19 +469,19 @@ export function Booking() {
                   className="py-6 text-center"
                 >
                   <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-sage/18 text-sage-deep">
-                    <HeartHandshake size={28} strokeWidth={1.6} />
+                    <HeartHandshake size={28} strokeWidth={1.75} />
                   </span>
-                  <h3 className="mt-7 font-display text-[1.875rem] leading-tight text-ink">
+                  <h3 className="mt-7 font-display text-display-md text-ink">
                     Asante, {form.name.split(" ")[0]}. Your space is held.
                   </h3>
-                  <p className="mx-auto mt-3 max-w-sm text-[14.5px] leading-relaxed text-muted">
+                  <p className="mx-auto mt-3 max-w-sm text-body text-muted">
                     {delivery === "endpoint"
                       ? "I have your request and will confirm by email within one working day. Nothing is charged today."
                       : "Your email app should have opened with the details filled in — send it and I will confirm within one working day. Nothing is charged today."}
                   </p>
 
                   <div className="mx-auto mt-8 max-w-sm rounded-[22px] border border-forest/12 bg-parchment p-6">
-                    <p className="text-[10.5px] font-extrabold uppercase tracking-[0.16em] text-sage-deep">
+                    <p className="text-micro uppercase text-sage-deep">
                       Your reference
                     </p>
                     <p className="mt-2 font-display text-3xl tracking-[0.06em] text-forest">{ref}</p>
@@ -495,7 +495,7 @@ export function Booking() {
                           toast(`Your reference is ${ref}`);
                         }
                       }}
-                      className="mt-4 inline-flex items-center gap-2 rounded-full border border-forest/20 bg-white px-4 py-2 text-[12.5px] font-bold text-ink transition-colors hover:border-forest/40"
+                      className="mt-4 inline-flex items-center gap-2 rounded-full border border-forest/20 bg-white px-4 py-2 text-meta font-bold text-ink transition-colors hover:border-forest/40"
                     >
                       <Copy size={13} />
                       Copy reference
@@ -507,7 +507,7 @@ export function Booking() {
                     <button
                       type="button"
                       onClick={reset}
-                      className="rounded-full border border-forest/20 px-7 py-3.5 text-[14px] font-bold text-forest transition-colors hover:border-forest/45"
+                      className="rounded-full border border-forest/20 px-7 py-3.5 text-body-sm font-bold text-forest transition-colors hover:border-forest/45"
                     >
                       Book another
                     </button>
@@ -533,7 +533,7 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function FieldError({ children }: { children: string }) {
   return (
-    <p role="alert" className="mt-2 text-[12px] font-semibold text-clay">
+    <p role="alert" className="mt-2 text-label font-semibold text-clay-ink">
       {children}
     </p>
   );

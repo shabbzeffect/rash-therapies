@@ -11,18 +11,18 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-full border border-gold/40 bg-ivory/10 font-display text-lg">
+              <span className="grid h-11 w-11 place-items-center rounded-full border border-gold/40 bg-ivory/10 font-display text-title">
                 {site.monogram}
               </span>
               <span>
-                <span className="block font-display text-[17px]">{site.name}</span>
-                <span className="block text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ivory/45">
+                <span className="block font-display text-lead">{site.name}</span>
+                <span className="block text-meta text-ivory/55">
                   {site.role}
                 </span>
               </span>
             </div>
-            <p className="mt-6 max-w-sm text-[14px] leading-[1.7] text-ivory/60">{footer.blurb}</p>
-            <ul className="mt-6 grid gap-2 text-[13.5px]">
+            <p className="mt-6 max-w-sm text-body-sm text-ivory/60">{footer.blurb}</p>
+            <ul className="mt-6 grid gap-2 text-body-sm">
               <li>
                 <a href={`mailto:${site.email}`} className="text-ivory/75 underline-offset-4 transition-colors hover:text-gold hover:underline">
                   {site.email}
@@ -39,11 +39,11 @@ export function Footer() {
           </div>
 
           <nav aria-label="Explore">
-            <p className="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-ivory/40">Explore</p>
+            <p className="text-micro uppercase text-ivory/40">Explore</p>
             <ul className="mt-5 grid gap-3">
               {footer.explore.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-[14px] text-ivory/70 transition-colors hover:text-gold">
+                  <a href={l.href} className="text-body-sm text-ivory/70 transition-colors hover:text-gold">
                     {l.label}
                   </a>
                 </li>
@@ -52,11 +52,11 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Support">
-            <p className="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-ivory/40">Support</p>
+            <p className="text-micro uppercase text-ivory/40">Support</p>
             <ul className="mt-5 grid gap-3">
               {footer.support.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-[14px] text-ivory/70 transition-colors hover:text-gold">
+                  <a href={l.href} className="text-body-sm text-ivory/70 transition-colors hover:text-gold">
                     {l.label}
                   </a>
                 </li>
@@ -65,7 +65,7 @@ export function Footer() {
           </nav>
 
           <div>
-            <p className="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-ivory/40">Prefer to talk?</p>
+            <p className="text-micro uppercase text-ivory/40">Prefer to talk?</p>
             <a
               href={site.whatsappUrl}
               target="_blank"
@@ -76,14 +76,14 @@ export function Footer() {
                 <MessageCircle size={17} />
               </span>
               <span>
-                <span className="block text-[14px] font-bold">WhatsApp {site.shortName}</span>
-                <span className="block text-[12px] text-ivory/55">Replies within a few hours</span>
+                <span className="block text-body-sm font-bold">WhatsApp {site.shortName}</span>
+                <span className="block text-label text-ivory/55">Replies within a few hours</span>
               </span>
             </a>
 
             <div className="mt-4 rounded-[22px] border border-clay/30 bg-clay/[0.09] p-5">
-              <p className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-[#f0b48c]">In crisis?</p>
-              <p className="mt-2 text-[12.5px] leading-relaxed text-ivory/65">
+              <p className="text-label font-extrabold uppercase tracking-[0.12em] text-clay-light">In crisis?</p>
+              <p className="mt-2 text-meta leading-relaxed text-ivory/65">
                 Kenya Red Cross <span className="font-bold text-ivory">1199</span> · Befrienders Kenya{" "}
                 <span className="font-bold text-ivory">0722 178 177</span>
               </p>
@@ -92,10 +92,10 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col gap-4 border-t border-ivory/12 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[12px] text-ivory/45">
+          <p className="text-label text-ivory/45">
             © {new Date().getFullYear()} {site.name} • {footer.legal}
           </p>
-          <p className="text-[12px] text-ivory/45">Designed and built with care. {site.tagline3}</p>
+          <p className="text-label text-ivory/45">Designed and built with care. {site.tagline3}</p>
         </div>
       </div>
     </footer>
@@ -182,12 +182,12 @@ export function Toaster() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduce ? { opacity: 0 } : { opacity: 0, y: 10, scale: 0.97 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-auto flex items-start gap-3 rounded-[20px] border border-forest/12 bg-ivory/95 px-5 py-4 shadow-lift backdrop-blur"
+            className="pointer-events-auto flex items-start gap-3 rounded-[20px] border border-forest/12 bg-ivory px-5 py-4 shadow-lift"
           >
             <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-sage/20 text-sage-deep">
               <Check size={13} strokeWidth={3} />
             </span>
-            <p className="flex-1 text-[13.5px] leading-snug text-ink">{item.message}</p>
+            <p className="flex-1 text-body-sm text-ink">{item.message}</p>
             <button
               type="button"
               onClick={() => setItems((list) => list.filter((i) => i.id !== item.id))}

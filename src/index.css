@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
+/* Fraunces — variable, opsz 9..144 + wght 100..900. Latin + latin-ext subsets.
+   `font-optical-sizing: auto` (the default) lets the hero pick up the display
+   optical size, which is where Fraunces is at its most elegant. */
 @font-face {
   font-family: "Fraunces";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("https://fonts.gstatic.com/s/fraunces/v34/6NUu8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1603gg7S2nfgRYIctxujDvTShUtWNg.woff2")
+  src: url("https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2")
     format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxCFTeO-U.woff2")
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Manrope — variable, wght 200..800. */
 @font-face {
   font-family: "Manrope";
   font-style: normal;
   font-weight: 200 800;
   font-display: swap;
-  src: url("https://fonts.gstatic.com/s/manrope/v19/xn7gYHE41ni1AdIRggexSg.woff2")
+  src: url("https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2")
     format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @theme inline {
   --font-display: var(--f-display), ui-serif, Georgia, serif;
   --font-body: var(--f-body), ui-sans-serif, system-ui, sans-serif;
+
+  /* ── Type roles ──────────────────────────────────────────────────────────
+     Every text size, leading and tracking on the site resolves through these
+     ten roles. Declaring size, line-height, tracking and weight together means
+     a role cannot drift out of sync with itself. Steps are deliberately far
+     enough apart to read as different jobs.
+
+     The brief pins body copy at 15–17px and display Fraunces at weight 300,
+     so prose never drops below --text-body-sm and display always runs light. */
+  --text-display-xl: 3.4rem;
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-xl--font-weight: 300;
+  --text-display-xl-wide: 5.1rem;
+
+  --text-display-lg: 2.25rem;
+  --text-display-lg--line-height: 1.06;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 300;
+  --text-display-lg-wide: 3.25rem;
+
+  --text-display-md: 1.5rem;
+  --text-display-md--line-height: 1.35;
+  --text-display-md--font-weight: 300;
+  --text-display-md-wide: 1.875rem;
+
+  --text-title: 1.25rem;
+  --text-title--line-height: 1.3;
+  --text-title--font-weight: 400;
+
+  --text-lead: 1.0625rem;
+  --text-lead--line-height: 1.7;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+
+  --text-body-sm: 0.9375rem;
+  --text-body-sm--line-height: 1.65;
+
+  /* Labels and buttons. No tracking here: 0.08em on mixed-case copy reads as a
+     mistake. The brief's 0.18em tracking belongs to --text-micro alone. */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--font-weight: 700;
+
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.5;
+
+  /* Stat band figures. Brief-mandated, and tabular so counters don't jitter. */
+  --text-figure: 3rem;
+  --text-figure--line-height: 1;
+  --text-figure-wide: 3.5rem;
+
+  /* Brief-mandated eyebrow: 11px, uppercase, 0.18em tracking. */
+  --text-micro: 0.6875rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.18em;
+  --text-micro--font-weight: 800;
+
+  /* Prose measure, 45–75ch. Applied to every body-copy slot so it cannot drift. */
+  --container-measure: 68ch;
 
   --color-ink: #11211c;
   --color-forest: #18312a;
@@ -30,15 +111,20 @@
   --color-sand: #e7ddc9;
   --color-clay: #c27a4a;
   --color-clay-soft: #f0d9c6;
+  /* Text-weight variants. `clay` at 3.18:1 is fine for fills and rules but
+     fails AA as body text, so links and accents use the darker shade. */
+  --color-clay-ink: #935d38;
+  --color-clay-light: #f0b48c;
   --color-gold: #c6a664;
+  --color-gold-ink: #7e652f;
   --color-gold-light: #e9dcc3;
   --color-sage: #8aa99a;
-  --color-sage-deep: #5f7f71;
-  --color-muted: #6c746f;
+  --color-sage-deep: #547063;
+  --color-muted: #636b66;
   --color-night: #0e1b17;
 
   --shadow-soft: 0 24px 60px -28px rgb(17 33 28 / 0.28);
-  --shadow-lift: 0 30px 70px -26px rgb(17 33 28 / 0.34);
+  --shadow-lift: 0 22px 48px -24px rgb(17 33 28 / 0.3);
 }
 
 :root {
@@ -61,6 +147,23 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  caret-color: #c27a4a;
+}
+
+/* Headings carry their own ragging; prose avoids orphans in its last line. */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p,
+li,
+dd,
+blockquote,
+figcaption {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -78,10 +181,16 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.6875rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
+  font-size: var(--text-micro);
+  line-height: var(--text-micro--line-height);
+  font-weight: var(--text-micro--font-weight);
+  letter-spacing: var(--text-micro--letter-spacing);
   text-transform: uppercase;
+}
+
+/* Prose slots. Every body-copy role is capped so measure cannot drift. */
+@utility measure {
+  max-width: var(--container-measure);
 }
 
 @utility shell {
@@ -160,6 +269,13 @@ body {
   display: flex;
   width: max-content;
   animation: marquee-x 32s linear infinite;
+}
+
+/* Pausing on hover lets a visitor actually read the list rather than
+   watching half of it slide past. */
+.marquee-host:hover .marquee-track,
+.marquee-host:focus-within .marquee-track {
+  animation-play-state: paused;
 }
 
 @keyframes drift {

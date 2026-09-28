@@ -22,7 +22,23 @@
     <meta property="og:locale" content="en_KE" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Both faces are preloaded so the display serif is present at first paint
+         rather than swapping in from Georgia. Latin subsets only. -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeA.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      crossorigin
+      href="https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2"
+    />
   </head>
   <body>
     <div id="root"></div>
